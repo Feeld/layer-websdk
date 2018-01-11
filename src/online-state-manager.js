@@ -61,7 +61,7 @@ class OnlineStateManager extends Root {
     } else {
       const OnlineEvents = global.getNativeSupport('OnlineEvents');
       if (OnlineEvents) {
-        OnlineEvents.addEventListener('change', this._handleOnlineEvent.bind(this));
+        OnlineEvents.addEventListener('connectionChange', this._handleOnlineEvent.bind(this));
       }
     }
   }

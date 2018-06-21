@@ -218,7 +218,8 @@ class ConversationMessage extends Message {
    */
   __updateIsRead(value) {
     if (value) {
-      if (!this._inPopulateFromServer && !this.getConversation()._inMarkAllAsRead) {
+      const conv = this.getConversation()
+      if (!this._inPopulateFromServer && (!conv || !conv._inMarkAllAsRead)) {
         this._sendReceipt(Constants.RECEIPT_STATE.READ);
       }
       this._triggerMessageRead();

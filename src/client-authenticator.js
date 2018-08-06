@@ -767,7 +767,7 @@ class ClientAuthenticator extends Root {
    * @param {Function} [callback=null] - Optional callback
    * @param {layer.LayerError} callback.error - LayerError if there was an error; null if successful
    */
-  registerIOSPushToken(options, callback) {
+  registerIOSPushToken(options, callback = () => {}) {
     this.xhr({
       url: 'push_tokens',
       method: 'POST',
@@ -794,7 +794,7 @@ class ClientAuthenticator extends Root {
    * @param {Function} [callback=null] - Optional callback
    * @param {layer.LayerError} callback.error - LayerError if there was an error; null if successful
    */
-  registerAndroidPushToken(options, callback) {
+  registerAndroidPushToken(options, callback = () => {}) {
     this.xhr({
       url: 'push_tokens',
       method: 'POST',
@@ -817,7 +817,7 @@ class ClientAuthenticator extends Root {
    * @param {Function} [callback=null] - Optional callback
    * @param {layer.LayerError} callback.error - LayerError if there was an error; null if successful
    */
-  unregisterPushToken(deviceId, callback) {
+  unregisterPushToken(deviceId, callback = () => {}) {
     this.xhr({
       url: 'push_tokens/' + deviceId,
       method: 'DELETE',

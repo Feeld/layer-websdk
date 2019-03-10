@@ -450,19 +450,23 @@ class Query extends Root {
     if (requestUrl !== this._firingRequest || this.isDestroyed) return;
 
     // isFiring is false... unless we are still syncing
-    this.isFiring = false;
-    this._firingRequest = '';
-    if (results.success) {
-      this.totalSize = Number(results.xhr.getResponseHeader('Layer-Count'));
-      if (results.data.length < pageSize || results.data.length === this.totalSize) this.pagedToEnd = true;
-      this._appendResults(results, false);
+    try {
+      this.isFiring = false;
+      this._firingRequest = '';
+      if (results.success) {
+        this.totalSize = Number(results.xhr.getResponseHeader('Layer-Count'));
+        if (results.data.length < pageSize || results.data.length === this.totalSize) this.pagedToEnd = true;
+        this._appendResults(results, false);
 
-    } else if (results.data.getNonce()) {
-      this.client.once('ready', () => {
-        this._run();
-      });
-    } else {
-      this.trigger('error', { error: results.data });
+      } else if (results.data.getNonce()) {
+        this.client.once('ready', () => {
+          this._run();
+        });
+      } else {
+        this.trigger('error', { error: results.data });
+      }
+    } catch (error) {
+      this.trigger('error', { error });
     }
   }
 

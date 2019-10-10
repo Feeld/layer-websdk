@@ -16,6 +16,7 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
+    "@react-native-community/netinfo": "^4.4.0",
     "backbone-events-standalone": "^0.2.7",
     "base64-js": "^1.2.0",
     "filereader": "^0.10.3",

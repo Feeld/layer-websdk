@@ -1,4 +1,4 @@
-const { NetInfo } = require('react-native');
+import NetInfo from '@react-native-community/netinfo';
 const base64JS = require('base64-js');
 
 /* istanbul ignore next */
